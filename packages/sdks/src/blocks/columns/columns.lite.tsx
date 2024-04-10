@@ -31,14 +31,18 @@ useMetadata({
 export default function Columns(props: ColumnProps) {
   const state = useStore({
     gutterSize: typeof props.space === 'number' ? props.space || 0 : 20,
-    cols: props.columns || [],
+    getColumns() {
+      return props.columns || []
+    },
     stackAt: props.stackColumnsAt || 'tablet',
     getWidth(index: number) {
-      return state.cols[index]?.width || 100 / state.cols.length;
+      const columns = state.getColumns();
+      return columns[index]?.width || 100 / columns.length;
     },
     getColumnCssWidth(index: number) {
+      const columns = state.getColumns();
       const subtractWidth =
-        (state.gutterSize * (state.cols.length - 1)) / state.cols.length;
+        (state.gutterSize * (columns.length - 1)) / columns.length;
       return `calc(${state.getWidth(index)}% - ${subtractWidth}px)`;
     },
 
