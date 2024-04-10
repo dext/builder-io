@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const n=require("react/jsx-runtime");function r(t){var e;return n.jsx("div",{className:"builder-text",dangerouslySetInnerHTML:{__html:((e=t.text)==null?void 0:e.toString())||""},style:{outline:"none"}})}exports.default=r;

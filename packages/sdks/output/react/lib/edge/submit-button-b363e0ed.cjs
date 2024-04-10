@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("react/jsx-runtime");function u(t){return e.jsx("button",{type:"submit",...t.attributes,children:t.text})}exports.default=u;
