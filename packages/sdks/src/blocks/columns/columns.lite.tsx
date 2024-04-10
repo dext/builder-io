@@ -30,15 +30,21 @@ useMetadata({
 
 export default function Columns(props: ColumnProps) {
   const state = useStore({
-    gutterSize: typeof props.space === 'number' ? props.space || 0 : 20,
-    cols: props.columns || [],
-    stackAt: props.stackColumnsAt || 'tablet',
+    getGutterSize() {
+      return typeof props.space === 'number' ? props.space || 0 : 20
+    },
+    getColumns() {
+      return props.columns || []
+    },
+    getStackAt() { return props.stackColumnsAt || 'tablet' },
     getWidth(index: number) {
-      return state.cols[index]?.width || 100 / state.cols.length;
+      const columns = state.getColumns();
+      return columns[index]?.width || 100 / columns.length;
     },
     getColumnCssWidth(index: number) {
+      const columns = state.getColumns();
       const subtractWidth =
-        (state.gutterSize * (state.cols.length - 1)) / state.cols.length;
+        (state.getGutterSize() * (columns.length - 1)) / columns.length;
       return `calc(${state.getWidth(index)}% - ${subtractWidth}px)`;
     },
 
@@ -49,7 +55,7 @@ export default function Columns(props: ColumnProps) {
       stackedStyle: CSSVal;
       desktopStyle: CSSVal;
     }): CSSVal {
-      return state.stackAt === 'tablet' ? stackedStyle : desktopStyle;
+      return state.getStackAt() === 'tablet' ? stackedStyle : desktopStyle;
     },
 
     getMobileStyle({
@@ -59,7 +65,7 @@ export default function Columns(props: ColumnProps) {
       stackedStyle: CSSVal;
       desktopStyle: CSSVal;
     }): CSSVal {
-      return state.stackAt === 'never' ? desktopStyle : stackedStyle;
+      return state.getStackAt() === 'never' ? desktopStyle : stackedStyle;
     },
 
     flexDir:
@@ -85,7 +91,7 @@ export default function Columns(props: ColumnProps) {
     },
 
     columnCssVars(index: number): Dictionary<string> {
-      const gutter = index === 0 ? 0 : state.gutterSize;
+      const gutter = index === 0 ? 0 : state.getGutterSize();
 
       const width = state.getColumnCssWidth(index);
       const gutterPixels = `${gutter}px`;
