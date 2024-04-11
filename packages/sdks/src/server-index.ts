@@ -3,14 +3,9 @@ export * from './index-helpers/top-of-file.js';
 /**
  * Component Prop types
  */
-export type { ButtonProps } from './blocks/button/button.types.js';
 export type { ColumnProps } from './blocks/columns/columns.types.js';
-export type { FragmentProps } from './blocks/fragment/fragment.types.js';
-export type { ImageProps } from './blocks/image/image.types.js';
-export type { SectionProps } from './blocks/section/section.types.js';
 export type { SymbolProps } from './blocks/symbol/symbol.types.js';
 export type { TextProps } from './blocks/text/text.types.js';
-export type { VideoProps } from './blocks/video/video.types.js';
 export type { BlocksProps } from './components/blocks/blocks.types.js';
 export type { ContentVariantsPrps as ContentProps } from './components/content-variants/content-variants.types.js';
 
