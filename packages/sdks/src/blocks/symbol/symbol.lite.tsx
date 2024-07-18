@@ -109,6 +109,7 @@ export default function Symbol(props: SymbolProps) {
         }}
         customComponents={Object.values(props.builderComponents)}
         data={{
+          ...props.builderContext.value.rootState,
           ...props.symbol?.data,
           ...props.builderContext.value.localState,
           ...state.contentToUse?.data?.state,
